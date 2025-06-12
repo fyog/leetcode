@@ -60,8 +60,8 @@ public:
             if (l2 != nullptr) l2 = l2 -> next;
         }
 
-        // if, in the case that the lists are mismatched in size and the calculation results in a carry value, then
-        // a final list node with the value of 1 needs to be included
+        // if, in the case that the sum of the final digits of both lists results in a carry value, then
+        // a final list node with the value of 1 needs to be attached to the list
         if (carry > 0) {
             list -> next = new ListNode(1);
         }
