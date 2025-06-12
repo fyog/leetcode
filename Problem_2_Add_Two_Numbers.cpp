@@ -11,10 +11,11 @@ class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
         
-        ListNode* answer = new ListNode();
-        ListNode* list = answer;
-        int carry = 0;
-        int sum = 0;
+        // dummy list node so we can later access the head of the list more easily
+        ListNode* dummy = new ListNode();
+        ListNode* list = dummy;
+        bool carry = false;
+        int sum;
 
         // while neither list is empty
         while (l1 != nullptr || l2 != nullptr) {
@@ -23,33 +24,33 @@ public:
             if (l1 != nullptr && l2 != nullptr) {
                 
                 // if there was a carry value left over from a previous iteration
-                if (carry > 0) {
+                if (carry) {
                     sum = l1 -> val + l2 -> val + 1; // sum the two list node values together, plus 1 for the carry value
                     carry = 0; // reset the carry value
                 } else { 
                     sum = l1 -> val + l2 -> val; // sum the list node values together
                 }
-                if (sum > 9) carry++; // if the sum is greater than 9, increment the carry value
+                if (sum > 9) carry = true; // if the sum is greater than 9, increment the carry value
             
             // if list 2 is empty
             } else if (l1 != nullptr && l2 == nullptr) {
                 
                 // if there was a carry value left over from a previous iteration
-                if (carry > 0) {
+                if (carry) {
                     sum = l1 -> val + 1; // the sum is the value of the list 1 node, plus 1 for the carry value
-                    carry = 0; 
+                    carry = false; 
                 } else {
                     sum = l1 -> val; // the sum is the value of the list 1 node
                 }
-                if (sum > 9) carry++; // if the sum is greater than 9, increment the carry value
+                if (sum > 9) carry = true; // if the sum is greater than 9, increment the carry value
             } else {
-                if (carry > 0) {
+                if (carry) {
                     sum = l2 -> val + 1; // the sum is the value of the list 1 node, plus 1 for the carry value
-                    carry = 0;
+                    carry = false;
                 } else {
                 sum = l2 -> val; // the sum is the value of the list 1 node
                 }
-                if (sum > 9) carry++; // if the sum is greater than 9, increment the carry value         
+                if (sum > 9) carry = true; // if the sum is greater than 9, increment the carry value         
             }
 
             // move to the next node in the list
@@ -58,10 +59,13 @@ public:
             if (l1 != nullptr) l1 = l1 -> next;
             if (l2 != nullptr) l2 = l2 -> next;
         }
+
+        // if, in the case that the lists are mismatched in size and the calculation results in a carry value, then
+        // a final list node with the value of 1 needs to be included
         if (carry > 0) {
             list -> next = new ListNode(1);
         }
     
-        return answer -> next;
+        return dummy -> next; // return the head of the list
     }
 };
