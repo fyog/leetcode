@@ -1,0 +1,33 @@
+class Solution {
+public:
+    bool isValid(string s) {
+        
+        std::vector<char> stack;
+       
+        for (char c : s) {
+
+            // generate stack
+            if (c == '(') { stack.push_back('('); }
+            else if (c == '[') { stack.push_back('['); }
+            else if (c == '{') { stack.push_back('{'); }
+            else stack.push_back('_');      
+                   
+            if (c == '(') { stack.push_back('('); }
+            else if (c == '[') { stack.push_back('['); }
+            else if (c == '{') { stack.push_back('{'); }
+            
+            char t = stack.back();
+
+            if (t == ')' && c != '(' ||
+                t == ']' && t != '[' ||
+                t == '}' && t != '{') { return false; }
+            
+            stack.pop_back();
+
+        }   
+           
+    }
+    
+    //if (open_par == closed_par && open_brkt == closed_brkt && open_curly == closed_curly) return true;
+    //else return false;
+};

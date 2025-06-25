@@ -1,0 +1,30 @@
+class Solution
+{
+
+public:
+    vector<int> twoSum(vector<int> &nums, int target)
+    {
+        bool running = true;
+        vector<int> soln;
+        while (running)
+        {   
+            // for eachnumber in the list
+            for (int i = 0; i < nums.size(); i++)
+            {   
+                // compare to the each other number (Exluding the number you are looking at above)
+                for (int j = i + 1; j < nums.size(); j++)
+                {   
+                    // if sum of array entires equals target
+                    if (nums[i] + nums[j] == target)
+                    {
+                        // push back the entry numbers and set running to false
+                        soln.push_back(i);
+                        soln.push_back(j);
+                        running = false;
+                    }
+                }
+            }
+        }
+        return soln;
+    }
+};
