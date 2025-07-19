@@ -8,41 +8,29 @@ public:
     // initialize sliding window and result string
     int begin = 0, end = 0;
     int len = 0;
-        string ls = "";
-        bool running = true;
+    string substring = "";
 
-        while (running) {
+    // while we have not reached the end of the string
+    while (end < s.length()) {
+        char current = s[end];
 
-            // for every char in the string
-            for (int i = 0; i < s.length(); i++) {
-                ls.push_back(s[i]);
-                for (int j = 0 ; j < ls.length(); j++){
-                    if (s[i] == ls[j]) running = false;
-                }
-            }
+        // if current char found twice in the window, move the beginning of the window forward
+        // the current char must be ahead of begin (ie. in the current window)
+        if (seen.count(current) == 1 && seen[current] >= begin) {
+            begin = seen[current] + 1;
         } 
-    return ls.length();
+        
+        // otherwise, move the end of the window forward
+        else {
+            seen[current] = end;
+            end++;
+        }
+
+        // if the window len is longer than the previous greatest window length, update the longest substring
+        if (end - begin > len) len = end - begin;
+            substring = s.substr(begin, end - begin);
+        }
+        return len;
     }
 };
-                // check to make sure the character is not already in the longest subsring
-                //for (int k = 0; k < s.length(); k++) {
-                   // if (s[i] == ls[k]) { continue; }
-                  //  else if (s[i] != ls[k]) { running = false; }
-               //}
-
-
-                // if the substring has that character already, terminate the cs 
-                //for (int k = 0; k < cs.length(); k++) if (cs[j] == cs[k]) break;
-                
-                    //flag = true;
-                //} if (!flag) {
-                    //current_substring.push_back(s[i]);
-                    //std::cout << s[i];
-                
-                //if (running) { break; }
-
-                // if the character has not been added to the substring already
-            //if (!flag  && longest_substring.length() < current_substring.length()) {
-                //longest_substring = current_substring;
-            //} else if (flag) {
-               // string current_substring = "";
+       
