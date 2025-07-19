@@ -1,0 +1,42 @@
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        string ls = "";
+        bool running = true;
+
+        while (running) {
+
+            // for every char in the string
+            for (int i = 0; i < s.length(); i++) {
+                ls.push_back(s[i]);
+                for (int j = 0 ; j < ls.length(); j++){
+                    if (s[i] == ls[j]) running = false;
+                }
+            }
+        } 
+    return ls.length();
+    }
+};
+                // check to make sure the character is not already in the longest subsring
+                //for (int k = 0; k < s.length(); k++) {
+                   // if (s[i] == ls[k]) { continue; }
+                  //  else if (s[i] != ls[k]) { running = false; }
+               //}
+
+
+                // if the substring has that character already, terminate the cs 
+                //for (int k = 0; k < cs.length(); k++) if (cs[j] == cs[k]) break;
+                
+                    //flag = true;
+                //} if (!flag) {
+                    //current_substring.push_back(s[i]);
+                    //std::cout << s[i];
+                
+                //if (running) { break; }
+            
+                // if the character has not been added to the substring already
+            //if (!flag  && longest_substring.length() < current_substring.length()) {
+                //longest_substring = current_substring;
+            //} else if (flag) {
+               // string current_substring = "";
+            
