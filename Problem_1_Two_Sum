@@ -6,6 +6,8 @@ public:
     {
         bool running = true;
         vector<int> soln;
+
+        // while program in running
         while (running)
         {   
             // for eachnumber in the list

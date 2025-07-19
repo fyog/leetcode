@@ -1,6 +1,13 @@
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
+    
+    // hash table
+    unordered_map<char, int> seen;
+    
+    // initialize sliding window and result string
+    int begin = 0, end = 0;
+    int len = 0;
         string ls = "";
         bool running = true;
 
@@ -33,10 +40,9 @@ public:
                     //std::cout << s[i];
                 
                 //if (running) { break; }
-            
+
                 // if the character has not been added to the substring already
             //if (!flag  && longest_substring.length() < current_substring.length()) {
                 //longest_substring = current_substring;
             //} else if (flag) {
                // string current_substring = "";
-            
